@@ -1,0 +1,28 @@
+<section class="todoapp">
+  <div class="container">
+    <div class="jumbotron">
+      <header class="header">
+        <h1>ToDo List</h1>
+        <input type="text" class="form-control" placeholder="Insert new todo" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
+      </header>
+      <section *ngIf="todos.length > 0">
+        <ul class="list-group">
+          <li *ngFor="let todo of todos" class="list-group-item">
+            <div class="form-group">
+              <input type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
+              <label style="margin-left:10px"><h3>{{todo.title}}</h3></label>
+              <div style="float:right;margin-top:18px">
+                <label style="color:red;">High priority:</label>
+                <input type="checkbox" (click)="changeTodoPriority(todo)" [checked]="todo.priority">
+                <button type="button" style="float:right;margin-left:18px;" class="btn btn-danger" (click)="removeTodo(todo)">X</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <footer class="footer" *ngIf="todos.length > 0">
+        <span class="todo-count"><strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item' : 'items'}} left</span>
+      </footer>
+    </div>
+  </div>
+</section>
